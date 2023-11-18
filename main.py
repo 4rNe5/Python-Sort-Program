@@ -1,7 +1,7 @@
 # Sort Program With Python
 # Made By 1114 박준현 / @4rNe5
 # Github : https://github.com/4rNe5
-# 조현아쌤 사랑해요~~ 만점주세요...
+# 조현아쌤 사랑해요~~ 만점주세요.....
 
 import random
 
@@ -205,49 +205,59 @@ def print_menu():
 
 
 # 메인 함수
-def main():
+def Sort_main():
     while True:
         # 리스트 생성
         lst = random.sample(range(101), 25)
         print_menu()
         choice = input("원하는 정렬 번호를 선택해 주세요 : ")
+        print("")
         if choice == "1":
             print("<선택 정렬 / Selection Sort>")
+            print("")
             print("정렬 전 : ", lst)
             print("선택 정렬 후 : ", selection_sort(lst))
         elif choice == "2":
             print("<삽입 정렬 / Insertion Sort>")
+            print("")
             print("정렬 전 : ", lst)
             print("삽입 정렬 후 : ", insertion_sort(lst))
         elif choice == "3":
             print("<버블 정렬 / Bubble Sort>")
+            print("")
             print("정렬 전 : ", lst)
             print("버블 정렬 후 : ", bubble_sort(lst))
         elif choice == "4":
             print("<퀵 정렬 / Quick Sort>")
+            print("")
             print("정렬 전 : ", lst)
             quick_sort(lst, 0, len(lst) - 1)
             print("퀵 정렬 후 : ", lst)
         elif choice == "5":
             print("<합병 정렬 / Merge Sort>")
+            print("")
             print("정렬 전 : ", lst)
             merge_sort(lst, 0, len(lst) - 1)
             print("합병 정렬 후 : ", lst)
         elif choice == "6":
             print("<힙 정렬 / Heap Sort>")
+            print("")
             lst1=list(lst)
             lst2=list(lst)
-            print("1번 힙")
+            print("{1번 힙 정렬}")
             print("정렬 전 : ", lst1)
-            print("힙 정렬 후 : ", heapSort(lst))
-            print("2번 힙")
+            print("1번 힙 정렬 후 : ", heapSort(lst))
+            print("------------------------------------")
+            print("{2번 힙 정렬}")
             print("정렬 전 : ", lst2)
-            print("힙 정렬 후 : ", heap_sort(lst2))
+            print("2번 힙 정렬 후 : ", heap_sort(lst2))
         elif choice == "7":
             exit("<종료 / Finish>")
+            print("")
         else:
-            print('<번호 오류>')
+            print('<번호 오류 / Input Number Error>')
+        print("")
 
 
 if __name__ == "__main__":
-    main()
+    Sort_main()
