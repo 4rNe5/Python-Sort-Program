@@ -203,6 +203,7 @@ def print_menu():
     print("5. 합병 정렬 / Merge Sort")
     print("6. 힙 정렬 / Heap Sort")
     print("7. 종료 / Exit")
+    print("")
 
 
 # 메인 함수
