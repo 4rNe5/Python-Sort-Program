@@ -4,6 +4,7 @@
 # 조현아쌤 사랑해요~~ 만점주세요.....
 
 import random
+import art
 
 
 sorted_list = []  # 합병정렬에 사용하는 리스트
@@ -115,42 +116,42 @@ def merge(A, left, mid, right):
     # sorted_list(임시저장) 리스트를 A(기존) 리스트로 복사
     A[left: right + 1] = sorted_list[left: right + 1]
 
+# 힙 정렬 2
+def heapify(arr, n, i):  # n = arr의 길이, i = 루트노드 인덱스
+  # 현재 노드를 가장 큰 값으로 설정함
+  largest = i
+  # 왼쪽 자식 노드에 대한 인덱스를 계산
+  l = 2 * i + 1
+  # 오른쪽 자식 노드에 대한 인덱스를 계산
+  r = 2 * i + 2
 
-# 힙 정렬 1
-def heapify(lst, n, i):
-    # 현재 노드를 가장 큰 값으로 설정함
-    largest = i
-    # 왼쪽 자식 노드에 대한 인덱스를 계산
-    l = 2 * i
-    # 오른쪽 자식 노드에 대한 인덱스를 계산
-    r = 2 * i + 1
+  # 왼쪽 자식이 힙의 크기 내에 있고, 현재의 값보다 크면 largest(가장 큰 값)를 왼쪽 자식으로 업데이트함.
+  if l < n and arr[i] < arr[l]:
+    largest = l
+  # 오른쪽 자식이 힙의 크기 내에 있고, 현재의 값보다 크면 largest(가장 큰 값)를 오른쪽 자식으로 업데이트함.
+  if r < n and arr[largest] < arr[r]:
+    largest = r
+  # largest가 변경되면 현재 노드와 largest 노드 값을 교환, 이후 다시 heapify() 함수 호출
+  if largest != i:
+    arr[i], arr[largest] = arr[largest], arr[i]
+    heapify(arr, n, largest)
 
-    # 왼쪽 자식이 힙의 크기 내에 있고, 현재의 값보다 크면 largest(가장 큰 값)를 왼쪽 자식으로 업데이트함.
-    if l <= n and lst[i - 1] < lst[l - 1]:
-        largest = l
-    # 오른쪽 자식이 힙의 크기 내에 있고, 현재의 값보다 크면 largest(가장 큰 값)를 오른쪽 자식으로 업데이트함.
-    if r <= n and lst[largest - 1] < lst[r - 1]:
-        largest = r
-
-    # largest가 변경되면 현재 노드와 largest 노드 값을 교환, 이후 다시 heapify() 함수 호출
-    if largest != i:
-        lst[i - 1], lst[largest - 1] = lst[largest - 1], lst[i - 1]
-        heapify(lst, n, largest)
-
-# 힙 정렬 1
-def heapSort(lst):
-    n = len(lst)
-    # 최대 힙 구성
-    for i in range(n // 2, 0, -1):
-        heapify(lst, n, i)
-    # 힙에서 원소를 하나씩 꺼내어 정렬함.
-    for i in range(n - 1, 0, -1):
-        lst[i], lst[0] = lst[0], lst[i]
-        heapify(lst, i, 1)
-    # 힙 정렬된 리스트를 반환함
-    return lst
 
 # 힙 정렬 2
+def heapSort(arr):
+  n = len(arr)
+  # 최대 힙 구성
+  for i in range(n // 2, -1, -1):
+    heapify(arr, n, i)
+  # 힙에서 원소를 하나씩 꺼내어 정렬함.
+  for i in range(n - 1, -1, -1):
+    arr[i], arr[0] = arr[0], arr[i]
+    heapify(arr, i, 0)
+
+  # 힙 정렬된 리스트를 반환함
+  return arr
+
+# 힙 정렬 1
 def heapPush(heap, n):
     # 힙에 원소를 추가, 그리고 힙 속성을 유지
     heap.append(n)
@@ -160,7 +161,7 @@ def heapPush(heap, n):
         i //= 2
     heap[i] = n
 
-# 힙 정렬 2
+# 힙 정렬 1
 def heapPop(heap):
     # 힙에서 최댓값을 제거후 반환
     size = len(heap) - 1
@@ -182,7 +183,7 @@ def heapPop(heap):
     heap.pop()
     return root
 
-# 힙 정렬 2
+# 힙 정렬 1
 def heap_sort(lst):
     # 정렬을 요하는 리스트를 Heap에 Input, 그 후 다시 꺼내어 정렬
     heap = [0]
@@ -206,6 +207,7 @@ def print_menu():
 
 # 메인 함수
 def Sort_main():
+    print(art.text2art("4rNe5's Sort"))
     while True:
         # 리스트 생성
         lst = random.sample(range(101), 25)
@@ -246,11 +248,11 @@ def Sort_main():
             lst2=list(lst)
             print("{1번 힙 정렬}")
             print("정렬 전 : ", lst1)
-            print("1번 힙 정렬 후 : ", heapSort(lst))
+            print("1번 힙 정렬 후 : ", heap_sort(lst))
             print("------------------------------------")
             print("{2번 힙 정렬}")
             print("정렬 전 : ", lst2)
-            print("2번 힙 정렬 후 : ", heap_sort(lst2))
+            print("2번 힙 정렬 후 : ", heapSort(lst2))
         elif choice == "7":
             exit("<종료 / Finish>")
             print("")
